@@ -1,23 +1,20 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import Layout from './Layout';
 
 
 class App extends Component {
+    constructor(){
+        super();
+    };
 
     
-    getVal(){
-        const firstName = 'Edward'
-        const lastName = 'Lee'
-        return `Hello there ${firstName} is your last name ${lastName}.`
-    }
-
     render() {
         return (
-            <div className='app'>
-                <h1>Hello World</h1>
-                <p>{this.getVal()}</p>
+            <div className="app">
+                <Layout />
             </div>
-        )
+        );
     }
 }
 
-export default App
+export default App;

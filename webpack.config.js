@@ -17,16 +17,21 @@ module.exports = {
         new webpack.NoErrorsPlugin()
     ],
     module: {
-        loaders:[
-            {
-              test: /\.js$/,
-              loader: 'babel-loader',
-              exclude: /node_modules/,
-              // Add a babelrc file to load babel or use query
-              query:{
-                presets: ['react','es2015', 'react-hmre']
-              }
+      // Add a babelrc file to load babel or use query
+        loaders:[{ 
+            test: /\.js$/, 
+            loader: 'babel-loader', exclude: /node_modules/, 
+            query:{ presets: ['react','es2015', 'react-hmre']}
+        },{ 
+            test: /\.css$/,
+            loader: 'style-loader',
+        },{
+            test: /\.css$/,
+            loader: 'css-loader',
+            query:{ 
+                modules: true,
+                localIdentName:'[name]__[local]___[hash:base64:5]'
             }
-        ]
+        }]
     }
 }

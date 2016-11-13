@@ -1,0 +1,35 @@
+.listContainer {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: 1em 0;
+}
+.list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.showAll {
+    color: red;
+    width: 100%;
+    padding: 0.5em 0;
+}
+.showAll a {
+    color: red;
+    width: 100%;
+}
+.showAll:focus {
+    color: black;
+    background-color: pink;
+}
+
+a {
+    padding: 0.2em 0;
+    color: black;
+}
+
+a:focus {
+    padding: 0.2em 0;
+    color: black;
+    background-color: pink;
+}
