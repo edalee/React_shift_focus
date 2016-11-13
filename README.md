@@ -2,27 +2,25 @@
 
 This is a simple experiement to use key events to shift focus to next item across multiple lists and components.
 
-Follow these steps to get started
-Get started by cd into your <project name> directory
+Follow these steps to get started:
+1. Get started by cd into your <project name> directory
 
-check you have webpack installed (probably not):
-$~ which webpack
-# you should see the path.
+2. Check you have webpack installed (probably not)
+$~ which webpack *-- (you should see the path to where it was installed)*
 
-Install it:
+3. Install it:
 $~  npm install -g webpack 
 
-Check again:
-$~  npm install -g webpack 
+4. Check again:
+$~ which webpack 
 
-Install webpack.config dependencies:
+5. Install webpack.config dependencies:
 $~  npm install 
 
-start it up:
+6. Start it up:
 $~  npm run dev 
 
-If it errors make sure you have nodemon:
+7. If it errors make sure you have nodemon:
 $~ npm install nodemon --save 
-
-Try again:
+And Try again:
 $~  npm run dev 
