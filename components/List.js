@@ -18,21 +18,21 @@ export default class List extends Component {
 
     componentDidUpdate() {
                 
-        if (this.props.section === 0 && this.props.focused === -1) {
+        if (this.props.row === 0 && this.props.item === 0) {
             this.first.focus();
         }
-        if (this.props.section === 1 && this.props.focused <= 4) {
-            this.L1.children[this.props.focused].focus();
-            // this.L1.refs.children[this.props.this.props.focused]
+        if (this.props.row === 1) {
+            this.L1.children[this.props.item].focus();
+            // this.L1.refs.children[this.props.this.props.item]
             // console.log(this.L1.refs)
         }
-        if (this.props.section === 2 && this.props.focused <= 4) {
-            this.L2.children[this.props.focused].focus();
-            // L2.children[this.props.focused].focus()
+        if (this.props.row === 2) {
+            this.L2.children[this.props.item].focus();
+            // L2.children[this.props.item].focus()
         }
-        if (this.props.section === 3 && this.props.focused <= 4) {
-            this.L3.children[this.props.focused].focus();
-            // L3.children[this.props.focused].focus()
+        if (this.props.row === 3) {
+            this.L3.children[this.props.item].focus();
+            // L3.children[this.props.item].focus()
         }
     }
 

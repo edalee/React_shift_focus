@@ -6,10 +6,17 @@ export default class TestList extends Component {
     constructor(props){
         super(props);
         this.state = {
-            focused: -2,
             show: false,
-            section: 0
+            row:0,
+            item:0
         };
+
+        this.matrix = [
+            [0],
+            [0,1,2,3,4],
+            [],
+            [0,1,2]
+        ];
         this.handleKey = this.handleKey.bind(this);
         this.showLists = this.showLists.bind(this);
         this.reset = this.reset.bind(this);
@@ -18,7 +25,7 @@ export default class TestList extends Component {
     reset() {
         this.setState({
             focused: -2,
-            section: 0,
+            row: 0,
             show: true
         });
     }
@@ -29,128 +36,65 @@ export default class TestList extends Component {
         });
     }
 
-    upFocus() {
-        let section = this.state.section;
-        let focused = this.state.focused;       
+    previousCursor(matrix, row, item){
+        if (row > 0) {
+            if (item === 0) {
+                let prevRow = row - 1;
+                let prevLength = matrix[prevRow].length;
+                this.setState( (prevstate) => {
+                    return{
+                        row: prevRow, 
+                        item: prevLength
+                    };
+                });
+            } 
+            else if (item < 0) { 
+                this.setState((prevstate) => { 
+                    return{ item: prevstate.item - 1};
+                });
+            } 
+        }
+        
+    }
 
-        if (section >= 0) {
-            if (section === 0) {
-                if (focused > -2) {
-                    this.setState({
-                        focused: focused - 1,
+    nextCursor(matrix, row, item){
+        
+        if (row < matrix.length) {
+            if (matrix[row].length > 0) {
+                if (matrix[row].length < item) {
+                    this.setState( (prevstate) => {
+                        return{
+                            row: index,
+                            item: 0
+                        };
+                    });
+                } else {
+                    this.setState((prevstate) => { 
+                        return{ item: prevstate.item + 1};
                     });
                 }
-            }
-            if (section === 1) {
-                if (focused > 0) {
-                    this.setState({
-                        focused: focused - 1,
-                    });
-                }
-                else {
-                    this.setState({
-                        focused: focused - 1,
-                        section: 0
-                    });
-                }
-            }
-            if (section === 2) {
-                if (focused > 0) {
-                    this.setState({
-                        focused: focused - 1,
-                    });
-                }
-                else {
-                    this.setState({
-                        focused: 4,
-                        section: 1
-                    });
-                }
-            }
-            if (section === 3) {
-                if (focused > 0) {
-                    this.setState({
-                        focused: focused - 1,
-                    });
-                }
-                else {
-                    this.setState({
-                        focused: 4,
-                        section: 2
-                    });
-                }
-            }
+            } 
         }
     }
 
-    downFocus() {
-        let section = this.state.section;
-        let focused = this.state.focused;
-
-        if (section < 4) {
-            if (section === 0) {
-                if (focused < -1) {
-                    this.setState({
-                        focused: focused + 1,
-                    });
-                }
-                else {
-                    this.setState({
-                        focused: focused + 1,
-                        section: 1,
-                    });
-                }
-            }
-            if (section === 1) {
-                if (focused < 4) {
-                    this.setState({
-                        focused: focused + 1,
-                    });
-                }
-                else {
-                    this.setState({
-                        focused: 0,
-                        section: 2
-                    });
-                }
-            }
-            if (section === 2) {
-                if (focused < 4) {
-                    this.setState({
-                        focused: focused + 1,
-                    });
-                }
-                else {
-                    this.setState({
-                        focused: 0,
-                        section: 3
-                    });
-                }
-            }
-            if (section === 3) {
-                if (focused < 4) {
-                    this.setState({
-                        focused: focused + 1,
-                    });
-                }
-            }
-        }
-    }
-
+    
     handleKey(event) {
         switch(event.keyCode){
             case 38:    // up
-                this.upFocus();
+                // this.upFocus();
+                this.previousCursor(this.matrix, this.state.row, this.state.item);
                 break;
             case 40:    // down
-                this.downFocus();
+                // this.downFocus();
+                this.nextCursor(this.matrix, this.state.row, this.state.item);
             default:
         }
     }
 
     render() {
-        console.log('fc: ',this.state.focused);
-        console.log('sc: ',this.state.section);
+        // console.log('fc: ',this.state.focused);
+        // console.log('sc: ',this.state.row);
+        console.log('current row: ',this.state.row+' item: '+ this.state.item);
         
         if (this.state.show) {
             return (
@@ -162,8 +106,8 @@ export default class TestList extends Component {
                         onBlur={ this.reset } />
                     <List 
                         ref="listComp" 
-                        focused={this.state.focused} 
-                        section={this.state.section}/>
+                        item={this.state.item} 
+                        row={this.state.row}/>
                 </div>
             );
         } 
