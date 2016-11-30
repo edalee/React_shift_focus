@@ -1,5 +1,8 @@
-# react-basic
+# react-shift-focus
+Simple example app demonstrating ref callbacks and key events to move onFocus across parent and child components. 
 
+
+## Get started.
 This is a simple experiement to use key events to shift focus to next item across multiple lists and components.
 
 Follow these steps to get started:
